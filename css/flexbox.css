@@ -1,0 +1,198 @@
+/* CABEÇALHO */
+
+.cabecalho__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    /*trava o cabeçalho no lugar e o item top abaixo indica onde que trava*/
+    top: 0;
+}
+
+.cabecalho__pesquisar__item {
+    display: none;
+}
+
+/* SEÇÃO SUPERIOR */
+
+.superior__secao__container {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    /*formatar texto ajustando para não ter quebra de linha quando o texto for grande*/
+    overflow: scroll;
+    /*coloca barra de rolagem*/
+    gap: 15px;
+    /*coloca espaçamento entre os itens não colocando nas extremidades*/
+}
+
+/* MENU LATERAL */
+
+.menu__container {
+    position: fixed;
+    bottom: 0%;
+    height: 74px;
+    width: 100%;
+}
+
+.menu__lista {
+    display: flex;
+    justify-content: space-around;
+    /*ajustando espaço entre os elementos*/
+    /* align-item: center só se fosse usado no menu__container */
+    height: 100%;
+}
+
+.menu__lista li {
+    align-self: center;
+    /*Alinhando todos os itens do menu no centro.*/
+}
+
+.menu__itens {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* sumindo com os menus 2,3 e 4 da lista do menu__lista sem criar classe onde só aparecem Inio, explorar, shorts
+inscrições e biblioteca no mobile e tablet.*/
+.menu__lista:nth-child(2),
+.menu__lista:nth-child(3),
+.menu__lista:nth-child(4) {
+    display: none;
+}
+
+/* VIDEO */
+
+.videos__container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    
+}
+.videos__item{
+    height: 303px;
+    width: 280px;
+    flex-grow: 1; /* propriedade de item onde os elementos se ajustam aproveitando o elemento Pai*/
+    /*flex-shrink, o contrário do grow faz um elemento diminuir conforme o espaço no container diminui*/
+}
+
+/* DESCRIÇÃO VIDEOS */
+
+.descricao-video {
+    margin-top: 1rem;
+    display: grid;
+    text-align: start;
+    column-gap: 1rem;
+    row-gap: 10px;
+    grid-template-columns: auto 1fr;
+}
+
+.descricao-video img {
+    grid-area: 1 / 1 / 3 / 2;
+}
+
+.descricao-video h3 {
+    grid-area: 1 / 2 / 2 / 3;
+    font-weight: 700;
+    color: #444444;
+}
+
+.descricao-video p {
+    grid-area: 2 / 2 / 3 / 3;
+    font-size: 14px;
+    color: #444444;
+}
+
+/* RODAPÉ */
+
+.rodape__container {
+    display: flex;
+    /*flex-direction: column; altera o eixo de linha para coluna
+    flex-wrap: wrap; é possível aplicar para apenas uma propriedade exemplo na propriedade flex-flow*/
+    flex-flow: column wrap;
+    /*combina o flex-wrap com o flex-direction*/
+}
+
+
+/* MEDIA PARA TABLET */
+@media(min-width: 834px) {
+    /* CABEÇALHO */
+
+    .cabecalho__pesquisar__item {
+        display: block;
+    }
+
+    /* MENU LATERAL */
+
+    .menu__container {
+        left: 0;
+        height: auto;
+        width: 74px;
+        top: 80px;
+    }
+
+    .menu__lista {
+        justify-content: flex-start;
+        flex-direction: column;
+        padding: 15px;
+        gap: 33px;
+    }
+
+    .menu__itens span {
+        /*alinhando os textos do span para desktop e tablet no centro.*/
+        align-self: center;
+    }
+
+    /* RODAPÉ */
+
+    .rodape__container {
+        justify-content: space-between;
+    }
+}
+
+/* MEDIA PARA DESKTOP */
+@media (min-width: 1200px) {
+    .menu__container {
+        width: 239px;
+        overflow: scroll;
+    }
+
+    .menu__lista:nth-child(2),
+    .menu__lista:nth-child(3),
+    .menu__lista:nth-child(4) {
+        display: flex;
+    }
+    .menu__lista{
+        height:auto;
+        padding: 20px 17px 20px 15px;
+        gap: 15px;
+    }
+
+    .menu__itens{
+        flex-direction: row;
+        gap: 15px;
+        align-items: center;
+    }
+    .menu__lista:nth-child(3){
+        flex-direction: column-reverse;
+    }
+    .jogos{
+        order: 3;
+    }
+    .filmes{
+        order: 2;
+    }
+    .premium{
+        order: 1;
+    }
+    .maispagina{
+        order: 4;
+    }
+}
+    /* FLEX-CONTAINER: são itens a serem colocados nos elementos pai e 
+FLEX-ITEM: é uma propriedade a ser colocada no elemento filho */
+
+/*ORDER tem um problema ao ser usado, se a pessoa utilizar leitores de tela
+ele não vai acatar esse comando e a página vai aparecer como se ele não fosse usado.
+em nosso caso jogos viria em 1º, filmes em 3º e assim por diante.*/
